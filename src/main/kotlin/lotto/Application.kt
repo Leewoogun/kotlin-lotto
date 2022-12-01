@@ -19,6 +19,7 @@ fun inputLottoNum(){
     showLottoNumber(userLottoNum)
     val winningNum = winningInputNumber()
     val bonusNum = bonusInputNumber()
+    lottoRotate(userLottoNum, winningNum, bonusNum)
 
 }
 
@@ -91,6 +92,24 @@ fun bonusInputException(bonusNum : Int){
     return
 }
 
+fun lottoRotate(userLottoNum: MutableList<MutableList<Int>>, winningNum : List<Int>, bonusNum : Int){
+    for (i in 0 until userLottoNum.size){
+        correctCount(userLottoNum[i], winningNum, bonusNum)
+    }
+}
 
+fun correctCount(userLottoNum : MutableList<Int>, winningNum : List<Int>, bonusNum : Int) : Pair<Int, Int>{
+    var lottoCount = 0
+    var bonusCount = 0
 
+    for (i in winningNum){
+        if (userLottoNum.contains(i)){
+            lottoCount += 1
+        }
+    }
+    if (userLottoNum.contains(bonusNum)){
+        bonusCount = 1
+    }
+    return Pair(lottoCount, bonusCount)
+}
 

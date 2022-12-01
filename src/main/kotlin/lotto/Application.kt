@@ -16,6 +16,7 @@ fun inputLottoNum(){
     val userLottoCount = lottoCount(inputNum)
     println("${userLottoCount}개를 구매했습니다.")
     val userLottoNum = lottoNumber((userLottoCount))
+    showLottoNumber(userLottoNum)
 }
 
 fun inputException(input : String?){
@@ -36,11 +37,19 @@ fun lottoCount(input : String?) : Int{
 
 fun lottoNumber(count : Int) : MutableList<MutableList<Int>>{
     val numberList = mutableListOf<MutableList<Int>>()
-    val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
 
     for (i in 1..count){
+        val numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6)
         numberList.add(numbers)
     }
     return numberList
 }
 
+fun showLottoNumber(LottoNum : MutableList<MutableList<Int>>){
+    val length = LottoNum.size
+
+    for (i in 0 until length){
+        val showLotto = LottoNum[i].sorted()
+        println(showLotto)
+    }
+}

@@ -18,7 +18,8 @@ fun inputLottoNum(){
     println("\n${userLottoCount}개를 구매했습니다.")
     val userLottoNum = lottoNumber((userLottoCount))
     showLottoNumber(userLottoNum)
-    winningInputNumber()
+    val winningNum = winningInputNumber()
+    val bonusNum = bonusInputNumber()
 }
 
 fun inputException(input : String?){
@@ -58,7 +59,12 @@ fun showLottoNumber(LottoNum : MutableList<MutableList<Int>>){
 
 fun winningInputNumber() : List<Int>{
     println("\n당첨 번호를 입력해 주세요.")
-    val winningNum = Console.readLine()!!.split(",").map {it.toInt()}
-    return winningNum
+    return Console.readLine()!!.split(",").map {it.toInt()}
 }
+
+fun bonusInputNumber() : Int{
+    println("\n보너스 번호를 입력해 주세요.")
+    return Console.readLine()!!.toInt()
+}
+
 

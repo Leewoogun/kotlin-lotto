@@ -8,7 +8,7 @@ fun main() {
     inputLottoNum()
 }
 
-fun inputLottoNum(){
+fun inputLottoNum() {
     println("구입금액을 입력해 주세요.")
     val inputNum = Console.readLine()
     inputException(inputNum)
@@ -19,8 +19,7 @@ fun inputLottoNum(){
     showLottoNumber(userLottoNum)
     val winningNum = winningInputNumber()
     val bonusNum = bonusInputNumber()
-    lottoRotate(userLottoNum, winningNum, bonusNum)
-
+    val countList = lottoCountList(userLottoNum, winningNum, bonusNum)
 }
 
 fun inputException(input : String?){
@@ -92,10 +91,12 @@ fun bonusInputException(bonusNum : Int){
     return
 }
 
-fun lottoRotate(userLottoNum: MutableList<MutableList<Int>>, winningNum : List<Int>, bonusNum : Int){
+fun lottoCountList(userLottoNum: MutableList<MutableList<Int>>, winningNum : List<Int>, bonusNum : Int) : MutableList<Pair<Int,Int>>{
+    var countList = mutableListOf<Pair<Int,Int>>()
     for (i in 0 until userLottoNum.size){
-        correctCount(userLottoNum[i], winningNum, bonusNum)
+        countList.add(correctCount(userLottoNum[i], winningNum, bonusNum))
     }
+    return countList
 }
 
 fun correctCount(userLottoNum : MutableList<Int>, winningNum : List<Int>, bonusNum : Int) : Pair<Int, Int>{

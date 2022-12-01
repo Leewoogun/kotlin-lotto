@@ -1,8 +1,7 @@
 package lotto
-
-import java.lang.IllegalArgumentException
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import kotlin.IllegalArgumentException
 
 
 fun main() {
@@ -20,6 +19,7 @@ fun inputLottoNum(){
     showLottoNumber(userLottoNum)
     val winningNum = winningInputNumber()
     val bonusNum = bonusInputNumber()
+
 }
 
 fun inputException(input : String?){
@@ -59,12 +59,38 @@ fun showLottoNumber(LottoNum : MutableList<MutableList<Int>>){
 
 fun winningInputNumber() : List<Int>{
     println("\n당첨 번호를 입력해 주세요.")
-    return Console.readLine()!!.split(",").map {it.toInt()}
+    val winningNum = Console.readLine()!!.split(",").map {it.toInt()}
+    lottoInputException(winningNum)
+    return winningNum
 }
 
 fun bonusInputNumber() : Int{
     println("\n보너스 번호를 입력해 주세요.")
-    return Console.readLine()!!.toInt()
+    val bonusNum = Console.readLine()!!.toInt()
+    bonusInputException(bonusNum)
+    return bonusNum
 }
+
+
+fun lottoInputException(winningNum : List<Int>){
+    if (winningNum.size != 6){
+        throw IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.")
+    }
+    for (i in winningNum){
+        if (i < 0 || i > 45){
+            throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+        }
+    }
+    return
+}
+
+fun bonusInputException(bonusNum : Int){
+    if (bonusNum < 0 || bonusNum > 45){
+        throw IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.")
+    }
+    return
+}
+
+
 
 

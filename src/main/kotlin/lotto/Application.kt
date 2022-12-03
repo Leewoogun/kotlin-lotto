@@ -22,7 +22,9 @@ fun inputLottoNum() {
     val winningNum = winningInputNumber()
     val bonusNum = bonusInputNumber()
     val countList = lottoCountList(userLottoNum, winningNum, bonusNum) // 데이터 클래스로 변경 가능할지도?
-    makeScoreList(countList)
+    val scoreList = makeScoreList(countList)
+    val resultMoney = gainMoney(scoreList)
+
 }
 
 fun inputException(input : String?){
@@ -139,6 +141,25 @@ fun isBonus(five : Pair<Int, Int>, scoreList : MutableList<Int>){
     }
     return
 }
+
+fun gainMoney(scoreList : MutableList<Int>) : Long{
+    var sum : Long = 0
+    for (i in scoreList.indices){
+        when(i){
+            0-> sum += scoreList[i] * 5000
+            1-> sum += scoreList[i] * 50000
+            2-> sum += scoreList[i] * 1_500_000
+            3-> sum += scoreList[i] * 30_000_000
+            4-> sum += scoreList[i] * 2_000_000_000
+        }
+    }
+    return sum
+}
+
+fun resultBenefit(){
+
+}
+
 
 
 

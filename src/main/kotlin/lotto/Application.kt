@@ -1,7 +1,9 @@
 package lotto
 import camp.nextstep.edu.missionutils.Console
 import camp.nextstep.edu.missionutils.Randoms
+import java.text.DecimalFormat
 import kotlin.IllegalArgumentException
+import kotlin.math.round
 
 
 fun main() {
@@ -24,7 +26,7 @@ fun inputLottoNum() {
     val countList = lottoCountList(userLottoNum, winningNum, bonusNum) // 데이터 클래스로 변경 가능할지도?
     val scoreList = makeScoreList(countList)
     val resultMoney = gainMoney(scoreList)
-
+    resultBenefit(resultMoney, inputNum)
 }
 
 fun inputException(input : String?){
@@ -142,8 +144,8 @@ fun isBonus(five : Pair<Int, Int>, scoreList : MutableList<Int>){
     return
 }
 
-fun gainMoney(scoreList : MutableList<Int>) : Long{
-    var sum : Long = 0
+fun gainMoney(scoreList : MutableList<Int>) : Double{
+    var sum : Double = 0.0
     for (i in scoreList.indices){
         when(i){
             0-> sum += scoreList[i] * 5000
@@ -156,8 +158,11 @@ fun gainMoney(scoreList : MutableList<Int>) : Long{
     return sum
 }
 
-fun resultBenefit(){
-
+fun resultBenefit(resultMoney : Double, inputNum : String){
+    var benefit : Double = (resultMoney / inputNum.toDouble()) * 100
+    benefit = round(benefit * 100) / 100 // 소수 둘째자리에서 반올림
+    val decimalBenefit = DecimalFormat("#,###.#") // 천 단위로 ,찍기
+    println("총 수익률은 ${decimalBenefit.format(benefit)}% 입니다.")
 }
 
 

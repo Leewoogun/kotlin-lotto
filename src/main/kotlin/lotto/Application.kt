@@ -26,7 +26,9 @@ fun inputLottoNum() {
     val countList = lottoCountList(userLottoNum, winningNum, bonusNum) // 데이터 클래스로 변경 가능할지도?
     val scoreList = makeScoreList(countList)
     val resultMoney = gainMoney(scoreList)
+    showScoreBenefit(scoreList)
     resultBenefit(resultMoney, inputNum)
+
 }
 
 fun inputException(input : String?){
@@ -158,12 +160,26 @@ fun gainMoney(scoreList : MutableList<Int>) : Double{
     return sum
 }
 
+fun showScoreBenefit(scoreList : MutableList<Int>){
+    println("""
+        당첨 통계
+        ---
+        3개 일치 (5,000원) - ${scoreList[0]}개
+        4개 일치 (50,000원) - ${scoreList[1]}개
+        5개 일치 (1,500,000원) - ${scoreList[2]}개
+        5개 일치, 보너스볼 일치 (30,000,000원) - ${scoreList[3]}개
+        6개 일치 (2,000,000,000원) - ${scoreList[4]}개
+    """.trimIndent())
+}
+
 fun resultBenefit(resultMoney : Double, inputNum : String){
     var benefit : Double = (resultMoney / inputNum.toDouble()) * 100
     benefit = round(benefit * 100) / 100 // 소수 둘째자리에서 반올림
     val decimalBenefit = DecimalFormat("#,###.#") // 천 단위로 ,찍기
     println("총 수익률은 ${decimalBenefit.format(benefit)}% 입니다.")
 }
+
+
 
 
 

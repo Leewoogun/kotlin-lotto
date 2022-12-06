@@ -1,5 +1,7 @@
 package exception
 
+import lotto.Lotto
+
 class NumberException {
     fun inputException(input : String) : Int{
         val inputNum = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해주세요.")
@@ -35,5 +37,16 @@ class NumberException {
             winningList.add(num)
         }
         return winningList
+    }
+
+    fun bonusNumException(input : String, winningNum : Lotto) : Int{
+        val bonusNum = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.")
+        if (bonusNum < 0 || bonusNum > 45){
+            throw IllegalArgumentException("[ERROR] 로또 번호 숫자는 1~45 사이여야 합니다.")
+        }
+        if (winningNum.lottoSort().contains(bonusNum)){
+            throw IllegalArgumentException("[ERROR] 중복 숫자는 입력이 불가능 합니다.")
+        }
+        return bonusNum
     }
 }

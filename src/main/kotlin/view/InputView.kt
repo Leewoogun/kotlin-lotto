@@ -15,4 +15,10 @@ class InputView {
         val winningNum = Console.readLine()
         return Lotto(numberException.winningNumException(winningNum))
     }
+
+    fun inputBonusNum(winningNum : Lotto) : Int{
+        println("\n보너스 금액을 입력해 주세요.")
+        val bonusNum = Console.readLine()
+        return numberException.bonusNumException(bonusNum, winningNum)
+    }
 }

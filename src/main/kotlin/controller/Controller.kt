@@ -9,6 +9,7 @@ class Controller {
     private var inputNum = 0
     private lateinit var lottoList : List<Lotto>
     private lateinit var winningNum : Lotto
+    private var bonusNum = 0
     private val inputView = InputView()
     private val outputView = OutputView()
     fun start(){
@@ -16,6 +17,7 @@ class Controller {
         inputNum = inputView.buyLotto()
         makeLotto(inputNum / 1000)
         winningNum = inputView.inputWinningNum()
+        bonusNum = inputView.inputBonusNum(winningNum)
     }
 
     fun makeLotto(count : Int){

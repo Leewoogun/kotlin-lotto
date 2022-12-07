@@ -24,6 +24,7 @@ class Controller {
         bonusNum = inputView.inputBonusNum(winningNum)
         correctLotto.checkCorrectLotto(lottoList, winningNum, bonusNum)
         calculateMoneyBenefit.gainMoney(correctLotto.getCorrectList())
+        makeRank()
     }
 
     fun makeLotto(count: Int) {
@@ -31,6 +32,11 @@ class Controller {
         lottoList = LottoList().lottoGenerate(count)
         outputView.showLottoList(lottoList, count)
     }
+
+    fun makeRank(){
+        outputView.showLottoScore(correctLotto.getCorrectList())
+    }
+
 
 
 

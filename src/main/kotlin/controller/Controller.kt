@@ -29,7 +29,7 @@ class Controller {
     private fun makeLotto(count: Int) {
         outputView.showLottoCount(count)
         lottoList = LottoList().lottoGenerate(count)
-        outputView.showLottoList(lottoList, count)
+        outputView.showLottoList(lottoList)
     }
 
     private fun makeRank(){

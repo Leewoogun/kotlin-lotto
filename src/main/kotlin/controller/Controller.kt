@@ -1,5 +1,6 @@
 package controller
 
+import lotto.CalculateMoneyBenefit
 import lotto.CorrectLotto
 import lotto.Lotto
 import lotto.LottoList
@@ -14,6 +15,7 @@ class Controller {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val correctLotto = CorrectLotto()
+    private val calculateMoneyBenefit = CalculateMoneyBenefit()
     fun start() {
         println("구입 금액을 입력해 주세요.")
         inputNum = inputView.buyLotto()
@@ -21,7 +23,7 @@ class Controller {
         winningNum = inputView.inputWinningNum()
         bonusNum = inputView.inputBonusNum(winningNum)
         correctLotto.checkCorrectLotto(lottoList, winningNum, bonusNum)
-
+        calculateMoneyBenefit.gainMoney(correctLotto.getCorrectList())
     }
 
     fun makeLotto(count: Int) {
@@ -29,6 +31,8 @@ class Controller {
         lottoList = LottoList().lottoGenerate(count)
         outputView.showLottoList(lottoList, count)
     }
+
+
 
 
 

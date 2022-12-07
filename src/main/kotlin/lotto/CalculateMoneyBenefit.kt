@@ -1,9 +1,13 @@
 package lotto
 
-class CalculateMoneyBenefit {
+import view.OutputView
+import java.text.DecimalFormat
+import kotlin.math.round
 
-    fun gainMoney(correctList : MutableList<Int>) : Double{
-        var sum : Double = 0.0
+class CalculateMoneyBenefit {
+    private var sum : Double = 0.0
+    private val outputView = OutputView()
+    fun gainMoney(correctList : MutableList<Int>){
 
         for (index in correctList.indices){
             when(index){
@@ -14,6 +18,12 @@ class CalculateMoneyBenefit {
                 4-> sum += correctList[index] * 2_000_000_000
             }
         }
-        return sum
+    }
+
+    fun resultBenefit(inputNum : Int){
+        var benefit : Double = ((sum / inputNum.toDouble()) * 100)
+        benefit = round(benefit * 100) / 100
+        val decimalFormat = DecimalFormat("#,###.#")
+        outputView.showBenefit(decimalFormat, benefit)
     }
 }

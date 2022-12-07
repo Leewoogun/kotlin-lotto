@@ -1,6 +1,7 @@
 package view
 
 import lotto.Lotto
+import java.text.DecimalFormat
 
 class OutputView {
     fun showLottoCount(count : Int){
@@ -24,5 +25,9 @@ class OutputView {
         5개 일치, 보너스볼 일치 (30,000,000원) - ${correctList[3]}개
         6개 일치 (2,000,000,000원) - ${correctList[4]}개
     """.trimIndent())
+    }
+
+    fun showBenefit(decimalBenefit : DecimalFormat, benefit : Double){
+        println("총 수익률은 ${decimalBenefit.format(benefit)}% 입니다.")
     }
 }

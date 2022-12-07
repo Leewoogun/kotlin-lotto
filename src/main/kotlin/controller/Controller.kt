@@ -22,25 +22,24 @@ class Controller {
         makeLotto(inputNum / 1000)
         winningNum = inputView.inputWinningNum()
         bonusNum = inputView.inputBonusNum(winningNum)
-        correctLotto.checkCorrectLotto(lottoList, winningNum, bonusNum)
-        calculateMoneyBenefit.gainMoney(correctLotto.getCorrectList())
         makeRank()
+        makeBenefit()
     }
 
-    fun makeLotto(count: Int) {
+    private fun makeLotto(count: Int) {
         outputView.showLottoCount(count)
         lottoList = LottoList().lottoGenerate(count)
         outputView.showLottoList(lottoList, count)
     }
 
-    fun makeRank(){
+    private fun makeRank(){
+        correctLotto.checkCorrectLotto(lottoList, winningNum, bonusNum)
+        calculateMoneyBenefit.gainMoney(correctLotto.getCorrectList())
         outputView.showLottoScore(correctLotto.getCorrectList())
     }
 
-
-
-
-
-
+    private fun makeBenefit(){
+        calculateMoneyBenefit.resultBenefit(inputNum)
+    }
 
 }
